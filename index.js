@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-const uri ='mongodb://localhost:27017/ema-john-store';
+const uri = `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -35,7 +35,7 @@ client.connect((err) => {
        })
    })
 
-  app.get('/',(req,res)=>{
+  app.get('/products',(req,res)=>{
    collection.find({})
    .toArray((err,documents)=>{
        res.send(documents)
