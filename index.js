@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-const uri = `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`;
+const uri = `mongodb://${process.env.DB_HOST||'localhost:27017'}/${process.env.DB_NAME||'ema-john-store'}`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
